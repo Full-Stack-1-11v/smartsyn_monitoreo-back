@@ -19,7 +19,7 @@ import cl.EcoMarket.Monitoreo.Model.Monitoreo;
 import cl.EcoMarket.Monitoreo.Service.MonitoreoService;
 
 @RestController
-@RequestMapping("api/vf1/monitoreo")
+@RequestMapping("/api/v1/ecomarket/monitoreo")
 public class MonitoreoController {
     
     @Autowired
