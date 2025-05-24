@@ -13,9 +13,9 @@ RUN chmod +x mvnw
 # Compila el proyecto y genera el JAR
 RUN ./mvnw clean package -DskipTests
 
-# Etapa 2: Usar solo el JAR generado (imagen de ejecución más ligera)
-# Usa una imagen de OpenJDK 21 para la fase de ejecución (jre-slim es más pequeño)
-FROM openjdk:21-jre-slim
+# Etapa 2: usar solo el JAR generado
+# Intenta con '21-jre-slim-bullseye' o '21-slim-jre'
+FROM openjdk:21-jre-slim-bullseye 
 
 WORKDIR /app
 
