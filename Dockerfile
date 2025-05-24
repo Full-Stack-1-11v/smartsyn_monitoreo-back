@@ -15,7 +15,7 @@ RUN ./mvnw clean package -DskipTests
 
 # Etapa 2: usar solo el JAR generado
 # Intenta con '21-jre-slim-bullseye' o '21-slim-jre'
-FROM openjdk:21-jre-slim-bullseye 
+FROM openjdk:21-slim-jre
 
 WORKDIR /app
 
