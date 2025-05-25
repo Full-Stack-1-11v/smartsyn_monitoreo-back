@@ -108,4 +108,10 @@ public class MonitoreoController {
         }
     }
 
+    @GetMapping("/enviarMonitoreo/")
+    public ResponseEntity<Void> enviarAReporte(@RequestBody Monitoreo monitoreo){
+        monitoreoService.enviarMonitoreoAReporte(monitoreo);
+        return ResponseEntity.ok().build();
+    }
+
 }

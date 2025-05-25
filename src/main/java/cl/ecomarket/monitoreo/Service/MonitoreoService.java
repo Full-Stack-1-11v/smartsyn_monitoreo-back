@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cl.ecomarket.monitoreo.Client.ReporteClient;
 import cl.ecomarket.monitoreo.Model.Monitoreo;
 import cl.ecomarket.monitoreo.Repository.MonitoreoRepository;
 import jakarta.transaction.Transactional;
@@ -13,7 +14,12 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class MonitoreoService {
     @Autowired
+    private ReporteClient reporteClient;
     private MonitoreoRepository monitoreoRepository;
+
+    public void enviarMonitoreoAReporte(Monitoreo monitoreo){
+        reporteClient.enviarMonitoreo(monitoreo);
+    }
 
     public List<Monitoreo> findAll() {
         return monitoreoRepository.findAll();
