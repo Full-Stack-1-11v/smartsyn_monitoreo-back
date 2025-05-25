@@ -8,6 +8,6 @@ import cl.ecomarket.monitoreo.DTO.MonitoreoDTO;
 
 @FeignClient(name = "user", url = "${url.usuario}")
 public interface ReporteClient {
-    @PostMapping("/enviarMonitoreo")
+    @PostMapping("api/v1/user/enviarMonitoreo")
     void enviarMonitoreo(@RequestBody MonitoreoDTO monitoreoDTO);
 }
