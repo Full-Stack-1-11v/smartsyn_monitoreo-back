@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import cl.ecomarket.monitoreo.Model.Monitoreo;
 
-@FeignClient(name = "reporte", url = "${https://smartsync-producto-back.onrender.com}")
+@FeignClient(name = "reporte", url = "${https://smartsync-reporte-back.onrender.com}")
 public interface ReporteClient {
     @GetMapping("/api/v1/ecomarket/reporte/monitoreo")
     void enviarMonitoreo(@RequestBody Monitoreo monitoreo);
