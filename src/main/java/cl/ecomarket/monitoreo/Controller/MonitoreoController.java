@@ -18,34 +18,32 @@ import org.springframework.web.bind.annotation.RestController;
 import cl.ecomarket.monitoreo.Model.Monitoreo;
 import cl.ecomarket.monitoreo.Service.MonitoreoService;
 
-
-
 @RestController
 @RequestMapping("/api/v1/ecomarket/monitoreo")
 public class MonitoreoController {
-    
+
     @Autowired
     private MonitoreoService monitoreoService;
 
     @GetMapping
-    public ResponseEntity<List<Monitoreo>> listar(){
+    public ResponseEntity<List<Monitoreo>> listar() {
         List<Monitoreo> monitoreos = monitoreoService.findAll();
         if (monitoreoService.findAll().isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.ok(monitoreos);      
+            return ResponseEntity.ok(monitoreos);
         }
     }
 
     @PostMapping
-    public ResponseEntity<Monitoreo> guardar(@RequestBody Monitoreo monitoreo){
+    public ResponseEntity<Monitoreo> guardar(@RequestBody Monitoreo monitoreo) {
         Monitoreo nuevoMonitoreo = monitoreoService.save(monitoreo);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoMonitoreo);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Monitoreo> buscarPorId(@PathVariable Integer id){
-        try{
+    public ResponseEntity<Monitoreo> buscarPorId(@PathVariable Integer id) {
+        try {
             Monitoreo monitoreo = monitoreoService.findById(id);
             return ResponseEntity.ok(monitoreo);
         } catch (Exception e) {
@@ -54,8 +52,8 @@ public class MonitoreoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Monitoreo> actualizar(@PathVariable Integer id, @RequestBody Monitoreo monitoreo){
-        try{
+    public ResponseEntity<Monitoreo> actualizar(@PathVariable Integer id, @RequestBody Monitoreo monitoreo) {
+        try {
             Monitoreo mon = monitoreoService.findById(id);
             mon.setId(id);
             mon.setDescripcion(monitoreo.getDescripcion());
@@ -69,8 +67,8 @@ public class MonitoreoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Integer id){
-        try{
+    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
+        try {
             monitoreoService.deleteById(id);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
@@ -79,8 +77,8 @@ public class MonitoreoController {
     }
 
     @PutMapping("/cambiarEstado/{id}")
-    public ResponseEntity<Monitoreo> cambiarEstado(@PathVariable Integer id, @RequestParam boolean nuevoEstado){
-        try{
+    public ResponseEntity<Monitoreo> cambiarEstado(@PathVariable Integer id, @RequestParam boolean nuevoEstado) {
+        try {
             Monitoreo monitoreo = monitoreoService.cambiarEstado(id, nuevoEstado);
             return ResponseEntity.ok(monitoreo);
         } catch (Exception e) {
@@ -89,8 +87,8 @@ public class MonitoreoController {
     }
 
     @GetMapping("/mostrarEstado/{id}")
-    public ResponseEntity<String> mostrarEstado(@PathVariable Integer id){
-        try{
+    public ResponseEntity<String> mostrarEstado(@PathVariable Integer id) {
+        try {
             String estado = monitoreoService.mostrarEstado(id);
             return ResponseEntity.ok(estado);
         } catch (Exception e) {
@@ -99,8 +97,8 @@ public class MonitoreoController {
     }
 
     @GetMapping("/solicitud/{id}")
-    public ResponseEntity<String> solicitarDoc(@PathVariable Integer id){
-        try{
+    public ResponseEntity<String> solicitarDoc(@PathVariable Integer id) {
+        try {
             String documentacion = monitoreoService.solicitarDocumentacion(id);
             return ResponseEntity.ok(documentacion);
         } catch (Exception e) {
@@ -109,8 +107,17 @@ public class MonitoreoController {
     }
 
     @PostMapping("/enviarMonitoreo")
-    public ResponseEntity<Void> enviarAReporte(@RequestBody Monitoreo monitoreo){
+    public ResponseEntity<Void> enviarAReporte(@RequestBody Monitoreo monitoreo) {
         monitoreoService.enviarMonitoreoAReporte(monitoreo);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/enviarMonitoreo")
+    public ResponseEntity<Void> enviarMonitoreoAUserPorGet(
+            @RequestParam("id") Integer id,
+            @RequestParam("descripcion") String descripcion,
+            @RequestParam("estado") Boolean estado) {
+        monitoreoService.enviarMonitoreoAUserPorGet(id, descripcion, estado);
         return ResponseEntity.ok().build();
     }
 

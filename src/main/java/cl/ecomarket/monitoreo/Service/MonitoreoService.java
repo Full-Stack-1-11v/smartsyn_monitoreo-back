@@ -31,6 +31,10 @@ public class MonitoreoService {
         reporteClient.enviarMonitoreo(monitoreoDTO);
     }
 
+    public void enviarMonitoreoAUserPorGet(Integer id, String descripcion, Boolean estado) {
+        reporteClient.enviarMonitoreoGet(id, descripcion, estado);
+    }
+
     public List<Monitoreo> findAll() {
         return monitoreoRepository.findAll();
     }
