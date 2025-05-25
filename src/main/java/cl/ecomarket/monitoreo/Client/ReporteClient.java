@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import cl.ecomarket.monitoreo.DTO.MonitoreoDTO;
 
-@FeignClient(name = "user", url = "${https://smartsync-usuario-back-pruebas.onrender.com}")
+@FeignClient(name = "user", url = "${url.usuario}")
 public interface ReporteClient {
     @PostMapping("/enviarMonitoreo")
     void enviarMonitoreo(@RequestBody MonitoreoDTO monitoreoDTO);
