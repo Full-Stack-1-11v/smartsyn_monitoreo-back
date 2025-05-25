@@ -2,7 +2,7 @@ package cl.ecomarket.monitoreo.Service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import cl.ecomarket.monitoreo.Client.ReporteClient;
@@ -13,9 +13,14 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class MonitoreoService {
-    @Autowired
-    private ReporteClient reporteClient;
-    private MonitoreoRepository monitoreoRepository;
+
+    private final ReporteClient reporteClient;
+    private final MonitoreoRepository monitoreoRepository;
+
+    public MonitoreoService(ReporteClient reporteClient, MonitoreoRepository monitoreoRepository) {
+        this.reporteClient = reporteClient;
+        this.monitoreoRepository = monitoreoRepository;
+    }
 
     public void enviarMonitoreoAReporte(Monitoreo monitoreo){
         reporteClient.enviarMonitoreo(monitoreo);
