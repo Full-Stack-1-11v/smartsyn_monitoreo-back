@@ -107,9 +107,9 @@ public class MonitoreoController {
     }
 
     @PostMapping("/enviarMonitoreo")
-    public ResponseEntity<Void> enviarAReporte(@RequestBody Monitoreo monitoreo) {
+    public ResponseEntity<Monitoreo> enviarAReporte(@RequestBody Monitoreo monitoreo) {
         monitoreoService.enviarMonitoreoAReporte(monitoreo);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(monitoreo);
     }
 
     @GetMapping("/enviarMonitoreo")
