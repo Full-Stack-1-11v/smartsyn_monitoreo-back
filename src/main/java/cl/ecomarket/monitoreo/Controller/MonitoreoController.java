@@ -35,13 +35,13 @@ public class MonitoreoController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/guardar")
     public ResponseEntity<Monitoreo> guardar(@RequestBody Monitoreo monitoreo) {
         Monitoreo nuevoMonitoreo = monitoreoService.save(monitoreo);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoMonitoreo);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/buscar")
     public ResponseEntity<Monitoreo> buscarPorId(@PathVariable Integer id) {
         try {
             Monitoreo monitoreo = monitoreoService.findById(id);
@@ -51,7 +51,7 @@ public class MonitoreoController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/actualizar")
     public ResponseEntity<Monitoreo> actualizar(@PathVariable Integer id, @RequestBody Monitoreo monitoreo) {
         try {
             Monitoreo mon = monitoreoService.findById(id);
@@ -66,7 +66,7 @@ public class MonitoreoController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/eliminar")
     public ResponseEntity<?> eliminar(@PathVariable Integer id) {
         try {
             monitoreoService.deleteById(id);
