@@ -63,7 +63,8 @@ public class MonitoreoService {
             return "No se encontró el monitoreo con id: " + id;
         }
     }
-
+    
+    /* 
     // Solicitar una documentacion del monitoreo por id
     public String solicitarDocumentacion(Integer id) {
         Monitoreo monitoreo = findById(id);
@@ -76,5 +77,6 @@ public class MonitoreoService {
             return "No se encontró el monitoreo con id: " + id;
         }
     }
+    */
 
 }

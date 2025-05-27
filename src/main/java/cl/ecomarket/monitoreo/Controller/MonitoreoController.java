@@ -97,6 +97,7 @@ public class MonitoreoController {
         }
     }
 
+    /* 
     @GetMapping("/solicitud/{id}")
     public ResponseEntity<String> solicitarDoc(@PathVariable Integer id) {
         try {
@@ -106,7 +107,8 @@ public class MonitoreoController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    */
+    
     @GetMapping("/obtenerReporte")
     public ResponseEntity<List<reporteDTO>> listarReporte() {
         List<reporteDTO> reportes = monitoreoService.obtenerReporte();
