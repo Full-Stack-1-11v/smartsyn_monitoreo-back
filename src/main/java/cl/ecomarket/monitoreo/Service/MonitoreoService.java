@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import cl.ecomarket.monitoreo.Client.ReporteClient;
-import cl.ecomarket.monitoreo.DTO.MonitoreoDTO;
+import cl.ecomarket.monitoreo.DTO.reporteDTO;
 import cl.ecomarket.monitoreo.Model.Monitoreo;
 import cl.ecomarket.monitoreo.Repository.MonitoreoRepository;
 import jakarta.transaction.Transactional;
@@ -23,16 +23,9 @@ public class MonitoreoService {
         this.monitoreoRepository = monitoreoRepository;
     }
 
-    public void enviarMonitoreoAReporte(Monitoreo monitoreo){
-        MonitoreoDTO monitoreoDTO = new MonitoreoDTO();
-        monitoreoDTO.setId(monitoreo.getId());
-        monitoreoDTO.setEstado(monitoreo.getEstado());
-        monitoreoDTO.setDescripcion(monitoreo.getDescripcion());
-        reporteClient.enviarMonitoreo(monitoreoDTO);
-    }
-
-    public void enviarMonitoreoAUserPorGet(Integer id, String descripcion, Boolean estado) {
-        reporteClient.enviarMonitoreoGet(id, descripcion, estado);
+    // Método para obtener el reporte desde el cliente Feign
+    public List<reporteDTO> obtenerReporte(){
+        return reporteClient.getReporte();
     }
 
     public List<Monitoreo> findAll() {

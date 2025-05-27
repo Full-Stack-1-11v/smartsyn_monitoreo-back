@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cl.ecomarket.monitoreo.DTO.reporteDTO;
 import cl.ecomarket.monitoreo.Model.Monitoreo;
 import cl.ecomarket.monitoreo.Service.MonitoreoService;
 
@@ -106,19 +107,14 @@ public class MonitoreoController {
         }
     }
 
-    @PostMapping("/enviarMonitoreo")
-    public ResponseEntity<Monitoreo> enviarAReporte(@RequestBody Monitoreo monitoreo) {
-        monitoreoService.enviarMonitoreoAReporte(monitoreo);
-        return ResponseEntity.ok(monitoreo);
-    }
-
-    @GetMapping("/enviarMonitoreo")
-    public ResponseEntity<Void> enviarMonitoreoAUserPorGet(
-            @RequestParam("id") Integer id,
-            @RequestParam("descripcion") String descripcion,
-            @RequestParam("estado") Boolean estado) {
-        monitoreoService.enviarMonitoreoAUserPorGet(id, descripcion, estado);
-        return ResponseEntity.ok().build();
+    @GetMapping("/reporte")
+    public ResponseEntity<List<reporteDTO>> listarReporte() {
+        List<reporteDTO> reportes = monitoreoService.obtenerReporte();
+        if (reportes.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.ok(reportes);
+        }
     }
 
 }
