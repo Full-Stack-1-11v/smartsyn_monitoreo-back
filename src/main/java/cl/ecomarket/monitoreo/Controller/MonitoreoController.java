@@ -107,7 +107,7 @@ public class MonitoreoController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/obtenerReporte")
     public ResponseEntity<List<reporteDTO>> listarReporte() {
         List<reporteDTO> reportes = monitoreoService.obtenerReporte();
         if (reportes.isEmpty()) {
