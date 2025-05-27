@@ -76,7 +76,7 @@ public class MonitoreoController {
         }
     }
 
-    @PutMapping("/cambiarEstado/{id}")
+    @PutMapping("/{id}/cambiarEstado")
     public ResponseEntity<Monitoreo> cambiarEstado(@PathVariable Integer id, @RequestParam boolean nuevoEstado) {
         try {
             Monitoreo monitoreo = monitoreoService.cambiarEstado(id, nuevoEstado);
@@ -86,7 +86,7 @@ public class MonitoreoController {
         }
     }
 
-    @GetMapping("/mostrarEstado/{id}")
+    @GetMapping("/{id}/mostrarEstado")
     public ResponseEntity<String> mostrarEstado(@PathVariable Integer id) {
         try {
             String estado = monitoreoService.mostrarEstado(id);
