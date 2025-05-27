@@ -26,7 +26,7 @@ public class MonitoreoController {
     @Autowired
     private MonitoreoService monitoreoService;
 
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity<List<Monitoreo>> listar() {
         List<Monitoreo> monitoreos = monitoreoService.findAll();
         if (monitoreoService.findAll().isEmpty()) {
@@ -107,7 +107,7 @@ public class MonitoreoController {
         }
     }
 
-    @GetMapping("/reporte")
+    @GetMapping
     public ResponseEntity<List<reporteDTO>> listarReporte() {
         List<reporteDTO> reportes = monitoreoService.obtenerReporte();
         if (reportes.isEmpty()) {
