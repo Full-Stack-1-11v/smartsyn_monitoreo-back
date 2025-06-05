@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MonitoreoApplication<monitoreo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "cl.ecomarket.monitoreo.MonitoreoApplication",
+            "projectName": "monitoreo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
