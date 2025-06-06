@@ -96,18 +96,6 @@ public class MonitoreoController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    /* 
-    @GetMapping("/solicitud/{id}")
-    public ResponseEntity<String> solicitarDoc(@PathVariable Integer id) {
-        try {
-            String documentacion = monitoreoService.solicitarDocumentacion(id);
-            return ResponseEntity.ok(documentacion);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    */
     
     @GetMapping("/obtenerReporte")
     public ResponseEntity<List<reporteDTO>> listarReporte() {
