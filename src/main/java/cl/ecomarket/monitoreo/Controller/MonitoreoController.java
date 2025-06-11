@@ -29,11 +29,8 @@ public class MonitoreoController {
     @GetMapping("/listar")
     public ResponseEntity<List<Monitoreo>> listar() {
         List<Monitoreo> monitoreos = monitoreoService.findAll();
-        if (monitoreoService.findAll().isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.ok(monitoreos);
-        }
+        return ResponseEntity.ok(monitoreos);
+        
     }
 
     @PostMapping("/guardar")
