@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import cl.ecomarket.monitoreo.Client.ReporteClient;
-import cl.ecomarket.monitoreo.DTO.reporteDTO;
+import cl.ecomarket.monitoreo.DTO.ReporteDTO;
 import cl.ecomarket.monitoreo.Model.Monitoreo;
 import cl.ecomarket.monitoreo.Repository.MonitoreoRepository;
 import jakarta.transaction.Transactional;
@@ -24,7 +24,7 @@ public class MonitoreoService {
     }
 
     // Método para obtener el reporte desde el cliente Feign
-    public List<reporteDTO> obtenerReporte(){
+    public List<ReporteDTO> obtenerReporte(){
         return reporteClient.getReporte();
     }
 

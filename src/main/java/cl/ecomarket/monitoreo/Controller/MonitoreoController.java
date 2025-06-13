@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import cl.ecomarket.monitoreo.DTO.reporteDTO;
+import cl.ecomarket.monitoreo.DTO.ReporteDTO;
 import cl.ecomarket.monitoreo.Model.Monitoreo;
 import cl.ecomarket.monitoreo.Service.MonitoreoService;
 
@@ -95,8 +95,8 @@ public class MonitoreoController {
     }
     
     @GetMapping("/obtenerReporte")
-    public ResponseEntity<List<reporteDTO>> listarReporte() {
-        List<reporteDTO> reportes = monitoreoService.obtenerReporte();
+    public ResponseEntity<List<ReporteDTO>> listarReporte() {
+        List<ReporteDTO> reportes = monitoreoService.obtenerReporte();
         if (reportes.isEmpty()) {
             return ResponseEntity.noContent().build();
         }else{

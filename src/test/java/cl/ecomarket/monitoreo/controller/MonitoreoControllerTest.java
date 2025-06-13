@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import cl.ecomarket.monitoreo.Controller.MonitoreoController;
 import cl.ecomarket.monitoreo.Service.MonitoreoService;
 import cl.ecomarket.monitoreo.Model.Monitoreo;
-import cl.ecomarket.monitoreo.DTO.reporteDTO;
+import cl.ecomarket.monitoreo.DTO.ReporteDTO;
 
 @WebMvcTest(MonitoreoController.class)
 public class MonitoreoControllerTest {
@@ -183,7 +183,7 @@ public class MonitoreoControllerTest {
     @Test
     @DisplayName("GET api/v1/ecomarket/monitoreo/obtenerReporte retorna 200 y un reporte de Monitoreos")
     void listarReporteDebeRetornarOk() throws Exception {
-        reporteDTO reporte = new reporteDTO(); // Asegúrate de tener un constructor vacío o usa un mock
+        ReporteDTO reporte = new ReporteDTO(); // Asegúrate de tener un constructor vacío o usa un mock
         when(monitoreoService.obtenerReporte()).thenReturn(List.of(reporte));
 
         mockMvc.perform(get("/api/v1/ecomarket/monitoreo/obtenerReporte")

@@ -15,7 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
 import cl.ecomarket.monitoreo.Client.ReporteClient;
-import cl.ecomarket.monitoreo.DTO.reporteDTO;
+import cl.ecomarket.monitoreo.DTO.ReporteDTO;
 import cl.ecomarket.monitoreo.Model.Monitoreo;
 import cl.ecomarket.monitoreo.Repository.MonitoreoRepository;
 import cl.ecomarket.monitoreo.Service.MonitoreoService;
@@ -164,14 +164,14 @@ public class MonitoreoServiceTest {
     @Test
     public void obtenerReporteDTO(){
         //Given
-        List<reporteDTO> reportes = new ArrayList<>();
-        reportes.add(new reporteDTO(1, "Tipo 1", "2023-10-01"));
+        List<ReporteDTO> reportes = new ArrayList<>();
+        reportes.add(new ReporteDTO(1, "Tipo 1", "2023-10-01"));
 
         //When
         when(monitoreoService.obtenerReporte()).thenReturn(reportes);
 
         //Then
-        List<reporteDTO> result = monitoreoService.obtenerReporte();
+        List<ReporteDTO> result = monitoreoService.obtenerReporte();
 
         assertNotNull(result); // Asegurando que el resultado no sea nulo
 
