@@ -71,7 +71,8 @@ public class MonitoreoController {
 
     /*
      * Endpoint para listar todos los monitoreos registrados.
-     * Utiliza HATEOAS para proporcionar enlaces a las operaciones disponibles.
+     * Método REST del tipo GET.
+     * @return lista de monitoreos {@link Monitoreo} con enlaces HATEOAS.
      */
     @GetMapping("/listar")
     @Operation(summary = "Listar Monitoreos", description = "Obtiene una lista de todos los monitoreos registrados.")
@@ -93,7 +94,9 @@ public class MonitoreoController {
     /*
      * Endpoint para guardar un nuevo monitoreo.
      * Recibe un objeto Monitoreo en el cuerpo de la solicitud y lo guarda en la base de datos.
-     * Devuelve el monitoreo creado con enlaces HATEOAS.
+     * Método REST del tipo POST.
+     * @param cuerpo del monitoreo a guardar {@link Monitoreo}.
+     * @return Monitoreo del tipo {@link Monitoreo} Creado.
      */
     @PostMapping("/guardar")
     @Operation(summary = "Guardar Monitoreo", description = "Crea un nuevo monitoreo en el sistema.")
@@ -111,7 +114,9 @@ public class MonitoreoController {
 
     /*
      * Endpoint para buscar un monitoreo por su ID.
-     * Devuelve el monitoreo encontrado con enlaces HATEOAS.
+     * Método REST del Tipo GET.
+     * @param ID del monitoreo a buscar {@link Integer}.
+     * @return Monitoreo del tipo {@link Monitoreo} encontrado.
      */
     @GetMapping("/{id}/buscar")
     @Operation(summary = "Buscar Monitoreo por ID", description = "Obtiene un monitoreo específico por su ID.")
@@ -135,7 +140,10 @@ public class MonitoreoController {
     /*
      * Endpoint para actualizar un monitoreo existente por su ID.
      * Recibe un objeto Monitoreo con los nuevos datos y actualiza el registro en la base de datos.
-     * Devuelve el monitoreo actualizado con enlaces HATEOAS.
+     * Método REST del tipo PUT.
+     * @param ID del monitoreo a actualizar {@link Integer}.
+     * @param cuerpo del monitoreo a actualizar {@link Monitoreo}.
+     * @return Monitoreo del tipo {@link Monitoreo} actualizado.
      */
     @PutMapping("/{id}/actualizar")
     @Operation(summary = "Actualizar Monitoreo", description = "Actualiza un monitoreo existente por su ID.")
@@ -165,6 +173,9 @@ public class MonitoreoController {
     /*
      * Endpoint para eliminar un monitoreo por su ID.
      * Elimina el registro de la base de datos y devuelve una respuesta sin contenido.
+     * Método REST del tipo DELETE.
+     * @param ID del monitoreo a eliminar {@link Integer}.
+     * @return Respuesta HTTP 204 no content.
      */
     @DeleteMapping("/{id}/eliminar")
     @Operation(summary = "Eliminar Monitoreo", description = "Elimina un monitoreo existente por su ID.")
@@ -188,7 +199,10 @@ public class MonitoreoController {
     /*
      * Endpoint para cambiar el estado de un monitoreo (activo/inactivo) por su ID.
      * Recibe el nuevo estado como parámetro y actualiza el registro en la base de datos.
-     * Devuelve el monitoreo actualizado con enlaces HATEOAS.
+     * Método REST del tipo PUT.
+     * @param ID del monitoreo a actualizar {@link Integer}.
+     * @param nuevoEstado del monitoreo a actualizar {@link Boolean}.
+     * @return Monitoreo del tipo {@link Monitoreo} actualizado con el nuevo estado.
      */
     @PutMapping("/{id}/cambiarEstado")
     @Operation(summary = "Cambiar Estado del Monitoreo", description = "Cambia el estado (activo/inactivo) de un monitoreo por su ID.")
@@ -212,7 +226,9 @@ public class MonitoreoController {
 
     /*
      * Endpoint para mostrar el estado de un monitoreo por su ID.
-     * Devuelve un objeto que contiene el estado del monitoreo con enlaces HATEOAS.
+     * Método REST del tipo GET.
+     * @param ID del monitoreo a buscar {@link Integer}.
+     * @return Estado del monitoreo como un mapa con el estado (activo/inactivo).
      */
     @GetMapping("/{id}/mostrarEstado")
     @Operation(summary = "Mostrar Estado del Monitoreo", description = "Obtiene el estado de un monitoreo por su ID.")
@@ -240,7 +256,8 @@ public class MonitoreoController {
 
     /*
      * Endpoint para obtener un reporte de los monitoreos registrados.
-     * Devuelve una lista de ReporteDTO con enlaces HATEOAS.
+     * Método REST del tipo GET.
+     * @return Lista de reportes del tipo {@link ReporteDTO} con enlaces HATEOAS.
      */
     @GetMapping("/obtenerReporte")
     @Operation(summary = "Obtener Reporte de Monitoreos", description = "Obtiene un reporte de los monitoreos registrados.")

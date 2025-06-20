@@ -40,6 +40,8 @@ public class MonitoreoService {
     /*
      * Método para obtener un reporte desde el cliente Feign.
      * Utiliza el cliente ReporteClient para realizar una llamada GET al servicio externo y obtener una lista de ReporteDTO.
+     * Obtiene una lista de reportes registrados.
+     * @return Lista de Objetos {@link ReporteDTO}
      */
     public List<ReporteDTO> obtenerReporte(){
         // INICIO
@@ -54,7 +56,7 @@ public class MonitoreoService {
     /*
      * Método para obtener todos los monitoreos de la base de datos.
      * Utiliza el repositorio MonitoreoRepository para realizar una consulta y obtener una lista de Monitoreo.
-     * Registra información sobre el proceso de obtención, incluyendo detalles de los monitoreos
+     * @return Lista de Objetos {@link Monitoreo}
      */
     public List<Monitoreo> findAll() {
         // INICIO
@@ -69,7 +71,8 @@ public class MonitoreoService {
     /*
      * Método para buscar un monitoreo por su identificador único.
      * Utiliza el repositorio MonitoreoRepository para realizar una consulta y obtener un Monitoreo por su id.
-     * Registra información sobre el proceso de búsqueda, incluyendo detalles del monitoreo encontrado o no encontrado.
+     * @param id Identificador único del monitoreo a buscar.
+     * @return Objeto {@link Monitoreo} si se encuentra, o {@code null} si no se encuentra.
      */
     public Monitoreo findById(Integer id) {
         // INICIO
@@ -82,9 +85,10 @@ public class MonitoreoService {
     }
 
     /*
-     * Método para buscar un monitoreo por su descripción.
-     * Utiliza el repositorio MonitoreoRepository para realizar una consulta y obtener un Monitoreo por su descripción.
-     * Registra información sobre el proceso de búsqueda, incluyendo detalles del monitoreo encontrado o no encontrado.
+     * Guarda un monitoreo en la base de datos.
+     * Utiliza el repositorio MonitoreoRepository para realizar una operación de guardado.
+     * @param monitoreo Objeto {@link Monitoreo} a guardar.
+     * @return Objeto {@link Monitoreo} guardado.
      */
     public Monitoreo save(Monitoreo monitoreo) {
         // INICIO
@@ -99,7 +103,7 @@ public class MonitoreoService {
     /*
      * Método para eliminar un monitoreo por su identificador único.
      * Utiliza el repositorio MonitoreoRepository para realizar una eliminación por id.
-     * Registra información sobre el proceso de eliminación, incluyendo detalles del monitoreo eliminado o no encontrado.
+     * @param id Identificador único del monitoreo a eliminar.
      */
     public void deleteById(Integer id) {
         // INICIO
@@ -113,8 +117,10 @@ public class MonitoreoService {
 
     /*
      * Método para cambiar el estado de un monitoreo por su identificador único.
-     * Utiliza el repositorio MonitoreoRepository para buscar el monitoreo por id, 
-     * actualizar su estado y guardarlo nuevamente.
+     * Utiliza el repositorio MonitoreoRepository para buscar el monitoreo por id. 
+     * @param id Identificador único del monitoreo cuyo estado se desea cambiar.
+     * @param nuevoEstado Nuevo estado a asignar al monitoreo.
+     * @return Objeto {@link Monitoreo} actualizado si se encuentra, o {@code null} si no se encuentra.
      */
     public Monitoreo cambiarEstado(Integer id, boolean nuevoEstado) {
         // INICIO
@@ -134,7 +140,8 @@ public class MonitoreoService {
     /*
      * Método para mostrar el estado de un monitoreo por su identificador único.
      * Utiliza el repositorio MonitoreoRepository para realizar una consulta y obtener un Monitoreo por su id.
-     * Registra información sobre el proceso de obtención del estado, incluyendo detalles del monitoreo encontrado o no encontrado.
+     * @param id Identificador único del monitoreo cuyo estado se desea mostrar.
+     * @return Estado del monitoreo como {@link String} si se encuentra, o un mensaje de error si no se encuentra.
      */
     public String mostrarEstado(Integer id) {
         // INICIO
