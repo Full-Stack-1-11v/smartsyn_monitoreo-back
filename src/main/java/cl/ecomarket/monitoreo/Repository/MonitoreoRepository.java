@@ -16,17 +16,17 @@ import cl.ecomarket.monitoreo.Model.Monitoreo;
 @Repository
 public interface MonitoreoRepository extends JpaRepository<Monitoreo, Integer>{
     
-    /*
+    /**
      * Este método permite encontrar un monitoreo por su identificador único.
      */
     List<Monitoreo> findByid(Integer id);
 
-    /*
+    /**
      * Este método permite encontrar un monitoreo por su descripción.
      */
     Monitoreo findByDescripcion(String descripcion);
 
-    /*
+    /**
      * Este método permite encontrar una lista de monitoreos por su estado (activo o inactivo).
      */
     @Query("SELECT m FROM Monitoreo m WHERE m.estado = ?1")

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
-/*
+/**
  * FUNCIONA LA APLICACION SIN PROBLEMAS
  */
 @EnableFeignClients

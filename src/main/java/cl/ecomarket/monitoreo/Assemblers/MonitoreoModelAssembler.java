@@ -11,7 +11,7 @@ import cl.ecomarket.monitoreo.Model.Monitoreo;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
-/*
+/**
  * La clase MonitoreoModelAssembler es un ensamblador que convierte objetos Monitoreo y ReporteDTO en EntityModel,
  * permitiendo agregar enlaces HATEOAS a los modelos.
  */

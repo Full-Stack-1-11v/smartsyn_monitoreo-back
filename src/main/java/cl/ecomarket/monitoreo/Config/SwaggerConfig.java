@@ -8,7 +8,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 @Configuration
 public class SwaggerConfig {
     
-    /*
+    /**
      * La clase SwaggerConfig configura la documentación de la API utilizando OpenAPI.
      * Define un bean OpenAPI que proporciona información sobre la API, como el título, la
      * versión y la descripción.

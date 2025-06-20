@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/*
+/**
  * La clase ReporteDTO es un objeto de transferencia de datos (DTO) que representa un reporte de monitoreo.
  * Contiene un identificador, un tipo de reporte y una fecha asociada al reporte.
  */

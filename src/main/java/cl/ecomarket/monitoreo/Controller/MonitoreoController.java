@@ -38,7 +38,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Parameter;
 
-/*
+/**
  * La clase MonitoreoController es un controlador REST que maneja las operaciones CRUD para la entidad Monitoreo.
  * Permite listar, guardar, buscar, actualizar y eliminar monitoreos, así como cambiar su estado y obtener reportes.
  * Utiliza HATEOAS para proporcionar enlaces a las operaciones disponibles.
@@ -49,27 +49,27 @@ import io.swagger.v3.oas.annotations.Parameter;
 @Tag(name = "Monitoreo", description = "Controlador para gestionar el monitoreo de Ecomarket")
 public class MonitoreoController {
 
-    /*
+    /**
      * Inyección de dependencias del servicio MonitoreoService.
      */
     @Autowired
     private MonitoreoService monitoreoService;
 
-    /*
+    /**
      * Inyección de dependencias del ensamblador MonitoreoModelAssembler.
      * Este ensamblador convierte objetos Monitoreo y ReporteDTO en EntityModel,
      * permitiendo agregar enlaces HATEOAS a los modelos.
-     */
+    */
     @Autowired
     private MonitoreoModelAssembler monitoreoModelAssembler;
 
-    /*
+    /**
      * Logger para registrar información, advertencias y errores en el controlador.
      */
     private static final Logger logger = LoggerFactory.getLogger(MonitoreoController.class);
 
 
-    /*
+    /**
      * Endpoint para listar todos los monitoreos registrados.
      * Método REST del tipo GET.
      * @return lista de monitoreos {@link Monitoreo} con enlaces HATEOAS.
@@ -91,12 +91,12 @@ public class MonitoreoController {
                         linkTo(methodOn(MonitoreoController.class).listar()).withSelfRel()));      
     }
 
-    /*
+    /**
      * Endpoint para guardar un nuevo monitoreo.
      * Recibe un objeto Monitoreo en el cuerpo de la solicitud y lo guarda en la base de datos.
      * Método REST del tipo POST.
-     * @param cuerpo del monitoreo a guardar {@link Monitoreo}.
-     * @return Monitoreo del tipo {@link Monitoreo} Creado.
+     * @param monitoreo Objeto monitoreo a guardar {@link Monitoreo}.
+     * @return Monitoreo Objeto tipo {@link Monitoreo} Creado.
      */
     @PostMapping("/guardar")
     @Operation(summary = "Guardar Monitoreo", description = "Crea un nuevo monitoreo en el sistema.")
@@ -112,11 +112,11 @@ public class MonitoreoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(monitoreoModelAssembler.toModel(nuevoMonitoreo));
     }
 
-    /*
+    /**
      * Endpoint para buscar un monitoreo por su ID.
      * Método REST del Tipo GET.
-     * @param ID del monitoreo a buscar {@link Integer}.
-     * @return Monitoreo del tipo {@link Monitoreo} encontrado.
+     * @param id ID del monitoreo a buscar {@link Integer}.
+     * @return Monitoreo Objeto del tipo {@link Monitoreo} encontrado.
      */
     @GetMapping("/{id}/buscar")
     @Operation(summary = "Buscar Monitoreo por ID", description = "Obtiene un monitoreo específico por su ID.")
@@ -137,12 +137,12 @@ public class MonitoreoController {
         }
     }
 
-    /*
+    /**
      * Endpoint para actualizar un monitoreo existente por su ID.
      * Recibe un objeto Monitoreo con los nuevos datos y actualiza el registro en la base de datos.
      * Método REST del tipo PUT.
-     * @param ID del monitoreo a actualizar {@link Integer}.
-     * @param cuerpo del monitoreo a actualizar {@link Monitoreo}.
+     * @param id ID del monitoreo a actualizar {@link Integer}.
+     * @param monitoreo Objeto monitoreo a actualizar {@link Monitoreo}.
      * @return Monitoreo del tipo {@link Monitoreo} actualizado.
      */
     @PutMapping("/{id}/actualizar")
@@ -170,11 +170,11 @@ public class MonitoreoController {
         }
     }
 
-    /*
+    /**
      * Endpoint para eliminar un monitoreo por su ID.
      * Elimina el registro de la base de datos y devuelve una respuesta sin contenido.
      * Método REST del tipo DELETE.
-     * @param ID del monitoreo a eliminar {@link Integer}.
+     * @param id ID del monitoreo a eliminar {@link Integer}.
      * @return Respuesta HTTP 204 no content.
      */
     @DeleteMapping("/{id}/eliminar")
@@ -196,12 +196,12 @@ public class MonitoreoController {
         }
     }
 
-    /*
+    /**
      * Endpoint para cambiar el estado de un monitoreo (activo/inactivo) por su ID.
      * Recibe el nuevo estado como parámetro y actualiza el registro en la base de datos.
      * Método REST del tipo PUT.
-     * @param ID del monitoreo a actualizar {@link Integer}.
-     * @param nuevoEstado del monitoreo a actualizar {@link Boolean}.
+     * @param id ID del monitoreo a actualizar {@link Integer}.
+     * @param nuevoEstado atributo de monitoreo a actualizar {@link Boolean}.
      * @return Monitoreo del tipo {@link Monitoreo} actualizado con el nuevo estado.
      */
     @PutMapping("/{id}/cambiarEstado")
@@ -224,10 +224,10 @@ public class MonitoreoController {
         }
     }
 
-    /*
+    /**
      * Endpoint para mostrar el estado de un monitoreo por su ID.
      * Método REST del tipo GET.
-     * @param ID del monitoreo a buscar {@link Integer}.
+     * @param id ID del monitoreo a buscar {@link Integer}.
      * @return Estado del monitoreo como un mapa con el estado (activo/inactivo).
      */
     @GetMapping("/{id}/mostrarEstado")
@@ -254,7 +254,7 @@ public class MonitoreoController {
         }
     }
 
-    /*
+    /**
      * Endpoint para obtener un reporte de los monitoreos registrados.
      * Método REST del tipo GET.
      * @return Lista de reportes del tipo {@link ReporteDTO} con enlaces HATEOAS.
