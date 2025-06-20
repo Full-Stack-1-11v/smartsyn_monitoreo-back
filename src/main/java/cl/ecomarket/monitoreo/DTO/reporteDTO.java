@@ -1,12 +1,20 @@
 package cl.ecomarket.monitoreo.DTO;
 
+import org.springframework.hateoas.server.core.Relation;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * La clase ReporteDTO es un objeto de transferencia de datos (DTO) que representa un reporte de monitoreo.
+ * Contiene un identificador, un tipo de reporte y una fecha asociada al reporte.
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Relation(collectionRelation = "reportes")
 public class ReporteDTO {
     private Integer id;
     private String tipo;

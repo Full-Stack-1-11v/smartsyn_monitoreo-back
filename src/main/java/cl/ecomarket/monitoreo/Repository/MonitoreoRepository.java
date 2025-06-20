@@ -8,16 +8,27 @@ import org.springframework.stereotype.Repository;
 
 import cl.ecomarket.monitoreo.Model.Monitoreo;
 
+/*
+ * La interfaz MonitoreoRepository es un repositorio JPA que permite realizar operaciones CRUD sobre la entidad Monitoreo.
+ * Proporciona métodos para encontrar monitoreos por id, descripción y estado.
+ */
+
 @Repository
 public interface MonitoreoRepository extends JpaRepository<Monitoreo, Integer>{
     
-    //Encontrar por id
+    /*
+     * Este método permite encontrar un monitoreo por su identificador único.
+     */
     List<Monitoreo> findByid(Integer id);
 
-    //Encontrar por descripcion
+    /*
+     * Este método permite encontrar un monitoreo por su descripción.
+     */
     Monitoreo findByDescripcion(String descripcion);
 
-    //Encontrar por estado
+    /*
+     * Este método permite encontrar una lista de monitoreos por su estado (activo o inactivo).
+     */
     @Query("SELECT m FROM Monitoreo m WHERE m.estado = ?1")
     List<Monitoreo> findByEstado(Boolean estado);
 }

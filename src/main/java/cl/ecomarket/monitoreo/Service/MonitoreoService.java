@@ -16,17 +16,31 @@ import jakarta.transaction.Transactional;
 @Transactional
 public class MonitoreoService {
 
+    /*
+     * La clase MonitoreoService es un servicio que maneja la lógica de negocio relacionada con los monitoreos.
+     * Utiliza un cliente Feign para obtener reportes de un servicio externo y un repositorio JPA para realizar operaciones CRUD sobre la entidad Monitoreo.
+     * Proporciona métodos para obtener reportes, buscar, guardar, eliminar y cambiar el estado de los monitoreos, así como para mostrar su estado actual.
+     */
     private final ReporteClient reporteClient;
     private final MonitoreoRepository monitoreoRepository;
 
+    /*
+     * Logger para registrar información, advertencias y errores en la aplicación.
+     */
     private static final Logger logger = LoggerFactory.getLogger(MonitoreoService.class);
 
+    /*
+     * Constructor de la clase MonitoreoService.
+     */
     public MonitoreoService(ReporteClient reporteClient, MonitoreoRepository monitoreoRepository) {
         this.reporteClient = reporteClient;
         this.monitoreoRepository = monitoreoRepository;
     }
 
-    // Método para obtener el reporte desde el cliente Feign
+    /*
+     * Método para obtener un reporte desde el cliente Feign.
+     * Utiliza el cliente ReporteClient para realizar una llamada GET al servicio externo y obtener una lista de ReporteDTO.
+     */
     public List<ReporteDTO> obtenerReporte(){
         // INICIO
         logger.info("Llamando al cliente Feign para obtener el reporte");
@@ -37,6 +51,11 @@ public class MonitoreoService {
         return reporteClient.getReporte();
     }
 
+    /*
+     * Método para obtener todos los monitoreos de la base de datos.
+     * Utiliza el repositorio MonitoreoRepository para realizar una consulta y obtener una lista de Monitoreo.
+     * Registra información sobre el proceso de obtención, incluyendo detalles de los monitoreos
+     */
     public List<Monitoreo> findAll() {
         // INICIO
         logger.info("Obteniendo todos los monitoreos de la base de datos");
@@ -47,6 +66,11 @@ public class MonitoreoService {
         return monitoreoRepository.findAll();
     }
 
+    /*
+     * Método para buscar un monitoreo por su identificador único.
+     * Utiliza el repositorio MonitoreoRepository para realizar una consulta y obtener un Monitoreo por su id.
+     * Registra información sobre el proceso de búsqueda, incluyendo detalles del monitoreo encontrado o no encontrado.
+     */
     public Monitoreo findById(Integer id) {
         // INICIO
         logger.info("Buscando monitoreo con id: {}", id);
@@ -57,6 +81,11 @@ public class MonitoreoService {
         return monitoreoRepository.findById(id).orElse(null);
     }
 
+    /*
+     * Método para buscar un monitoreo por su descripción.
+     * Utiliza el repositorio MonitoreoRepository para realizar una consulta y obtener un Monitoreo por su descripción.
+     * Registra información sobre el proceso de búsqueda, incluyendo detalles del monitoreo encontrado o no encontrado.
+     */
     public Monitoreo save(Monitoreo monitoreo) {
         // INICIO
         logger.info("Guardando monitoreo: {}", monitoreo);
@@ -67,6 +96,11 @@ public class MonitoreoService {
         return monitoreoRepository.save(monitoreo);
     }
 
+    /*
+     * Método para eliminar un monitoreo por su identificador único.
+     * Utiliza el repositorio MonitoreoRepository para realizar una eliminación por id.
+     * Registra información sobre el proceso de eliminación, incluyendo detalles del monitoreo eliminado o no encontrado.
+     */
     public void deleteById(Integer id) {
         // INICIO
         logger.info("Eliminando monitoreo con id: {}", id);
@@ -77,7 +111,11 @@ public class MonitoreoService {
         monitoreoRepository.deleteById(id);
     }
 
-    // Cambiar estado por id
+    /*
+     * Método para cambiar el estado de un monitoreo por su identificador único.
+     * Utiliza el repositorio MonitoreoRepository para buscar el monitoreo por id, 
+     * actualizar su estado y guardarlo nuevamente.
+     */
     public Monitoreo cambiarEstado(Integer id, boolean nuevoEstado) {
         // INICIO
         logger.info("Cambiando estado del monitoreo con id: {}", id);
@@ -93,7 +131,11 @@ public class MonitoreoService {
         return null;
     }
 
-    // Mostrar el estado por id
+    /*
+     * Método para mostrar el estado de un monitoreo por su identificador único.
+     * Utiliza el repositorio MonitoreoRepository para realizar una consulta y obtener un Monitoreo por su id.
+     * Registra información sobre el proceso de obtención del estado, incluyendo detalles del monitoreo encontrado o no encontrado.
+     */
     public String mostrarEstado(Integer id) {
         // INICIO
         logger.info("Mostrando estado del monitoreo con id: {}", id);
@@ -108,20 +150,5 @@ public class MonitoreoService {
             return "No se encontró el monitoreo con id: " + id;
         }
     }
-    
-    /* 
-    // Solicitar una documentacion del monitoreo por id
-    public String solicitarDocumentacion(Integer id) {
-        Monitoreo monitoreo = findById(id);
-        if (monitoreo != null) {
-            return "ID: " + monitoreo.getId() +
-                    "\nEstado Actual: " + monitoreo.getEstado() +
-                    "\nDescripcion: " + monitoreo.getDescripcion() +
-                    "\nSolicitud de Monitoreo enviada";
-        } else {
-            return "No se encontró el monitoreo con id: " + id;
-        }
-    }
-    */
 
 }

@@ -167,7 +167,9 @@ public class MonitoreoControllerTest {
         mockMvc.perform(get("/api/v1/ecomarket/monitoreo/1/mostrarEstado")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Activo"));
+                .andExpect(jsonPath("$.estado").value("Activo"))
+                .andExpect(jsonPath("$._links.self.href").exists())
+                .andExpect(jsonPath("$._links.monitoreos.href").exists());
     }
 
     @Test
@@ -189,7 +191,8 @@ public class MonitoreoControllerTest {
         mockMvc.perform(get("/api/v1/ecomarket/monitoreo/obtenerReporte")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(1));
+                .andExpect(jsonPath("$._embedded").exists())
+                .andExpect(jsonPath("$._links.self.href").exists());
     }
 
     @Test

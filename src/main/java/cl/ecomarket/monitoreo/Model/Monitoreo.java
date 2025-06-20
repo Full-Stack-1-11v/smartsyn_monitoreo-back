@@ -5,6 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * La clase Monitoreo es una entidad JPA que representa un registro de monitoreo en la base de datos.
+ * Contiene un identificador único, una descripción y un estado que indica si el monitoreo esta activo o inactivo.
+ */
+
 @Entity
 @Table(name = "monitoreo")
 @Data
