@@ -253,4 +253,101 @@ public class MonitoreoTest {
         assert monitoreo.getEstado() == true;
     }
 
+    @Test
+    public void testEqualsWithSelf() {
+        Monitoreo monitoreo = new Monitoreo();
+        monitoreo.setId(1);
+        monitoreo.setDescripcion("Self equality test");
+        monitoreo.setEstado(true);
+
+        assert monitoreo.equals(monitoreo);
+    }
+
+    @Test
+    public void testEqualsWithNullFields() {
+        Monitoreo monitoreo1 = new Monitoreo();
+        monitoreo1.setId(null);
+        monitoreo1.setDescripcion(null);
+        monitoreo1.setEstado(null);
+
+        Monitoreo monitoreo2 = new Monitoreo();
+        monitoreo2.setId(null);
+        monitoreo2.setDescripcion(null);
+        monitoreo2.setEstado(null);
+
+        assert monitoreo1.equals(monitoreo2);
+        assert monitoreo1.hashCode() == monitoreo2.hashCode();
+    }
+
+    @Test
+    public void testEqualsWithDifferentType() {
+        Monitoreo monitoreo = new Monitoreo();
+        monitoreo.setId(1);
+        monitoreo.setDescripcion("Different type test");
+        monitoreo.setEstado(true);
+
+        String notMonitoreo = "Not a Monitoreo";
+        assert !monitoreo.equals(notMonitoreo);
+    }
+
+    @Test
+    public void testHashCodeWithNullFields() {
+        Monitoreo monitoreo1 = new Monitoreo();
+        monitoreo1.setId(null);
+        monitoreo1.setDescripcion(null);
+        monitoreo1.setEstado(null);
+
+        Monitoreo monitoreo2 = new Monitoreo();
+        monitoreo2.setId(null);
+        monitoreo2.setDescripcion(null);
+        monitoreo2.setEstado(null);
+
+        assert monitoreo1.hashCode() == monitoreo2.hashCode();
+    }
+
+    @Test
+    public void testEqualsWithOnlyIdDifferent() {
+        Monitoreo monitoreo1 = new Monitoreo();
+        monitoreo1.setId(1);
+        monitoreo1.setDescripcion("Desc");
+        monitoreo1.setEstado(true);
+
+        Monitoreo monitoreo2 = new Monitoreo();
+        monitoreo2.setId(2);
+        monitoreo2.setDescripcion("Desc");
+        monitoreo2.setEstado(true);
+
+        assert !monitoreo1.equals(monitoreo2);
+    }
+
+    @Test
+    public void testEqualsWithOnlyDescripcionDifferent() {
+        Monitoreo monitoreo1 = new Monitoreo();
+        monitoreo1.setId(1);
+        monitoreo1.setDescripcion("Desc1");
+        monitoreo1.setEstado(true);
+
+        Monitoreo monitoreo2 = new Monitoreo();
+        monitoreo2.setId(1);
+        monitoreo2.setDescripcion("Desc2");
+        monitoreo2.setEstado(true);
+
+        assert !monitoreo1.equals(monitoreo2);
+    }
+
+    @Test
+    public void testEqualsWithOnlyEstadoDifferent() {
+        Monitoreo monitoreo1 = new Monitoreo();
+        monitoreo1.setId(1);
+        monitoreo1.setDescripcion("Desc");
+        monitoreo1.setEstado(true);
+
+        Monitoreo monitoreo2 = new Monitoreo();
+        monitoreo2.setId(1);
+        monitoreo2.setDescripcion("Desc");
+        monitoreo2.setEstado(false);
+
+        assert !monitoreo1.equals(monitoreo2);
+    }
+
 }
