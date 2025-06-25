@@ -1,4 +1,4 @@
-package cl.ecomarket.monitoreo.DTO;eport
+package cl.ecomarket.monitoreo.DTO;
 
 import org.springframework.hateoas.server.core.Relation;
 
